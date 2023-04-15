@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col">
+    <h1>Pokemons</h1>
+    <hr>
+
+
+    <ul class="list-group mb-5">
+      <li *ngFor="let pokemon of pokemons()"  class="list-group-item">
+        {{ pokemon.name }}
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+
+<button (click)="loadNextPage()" class="btn btn-primary">
+  Cargar más
+</button>
