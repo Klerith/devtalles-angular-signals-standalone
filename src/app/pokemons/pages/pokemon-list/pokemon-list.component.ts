@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 
 import { PokemonsService } from '../../services/pokemons.service';
 import { Pokemon } from '../../models/pokemon';
@@ -14,6 +14,11 @@ export class PokemonListComponent {
   public currentPage = signal(0);
   public pokemons    = signal<Pokemon[]>([]);
 
+  public totalPokemons = computed( () => `Total de pokemons ${ this.pokemons().length }`  );
+
+
+  public pokemonsArray: Pokemon[] = []
+
 
   ngOnInit(): void {
     this.loadNextPage();
@@ -26,7 +31,9 @@ export class PokemonListComponent {
       .subscribe( pokemons => {
         // console.log( pokemons[0] instanceof Pokemon )
         // this.pokemons.set( pokemons );
-        this.pokemons.update( currentPokemons => [ ...currentPokemons, ...pokemons ])
+        this.pokemons.update( currentPokemons => [ ...currentPokemons, ...pokemons ]);
+
+        this.pokemonsArray = [ ...this.pokemonsArray, ...pokemons ];
       });
   }
 

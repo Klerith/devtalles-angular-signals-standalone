@@ -13,6 +13,7 @@ export class PokemonsService {
   private baseUrl = 'https://pokeapi.co/api/v2/pokemon'; // ?offset=20
 
 
+
   constructor( private http: HttpClient ) {
     console.log('servicio inicializado');
   }
